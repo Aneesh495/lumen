@@ -1,0 +1,16 @@
+[workspace]
+authors = ["Aneesh Krishna <aneesh495@users.noreply.github.com>"]
+channels = ['https://conda.modular.com/max', 'conda-forge']
+name = "lumen"
+platforms = ['osx-arm64', 'linux-64']
+version = "0.1.0"
+
+[tasks]
+build = "mojo build -I . src/main.mojo -o bin/lumen"
+test = "bash scripts/verify_all.sh"
+hygiene = "python3 scripts/verify_no_dashes.py"
+bench = "mojo -I . benches/bench_rasterizer.mojo"
+serve = "python3 -m http.server 8080 --directory web"
+
+[dependencies]
+mojo = ">=1.2.0,<2"

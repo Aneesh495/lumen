@@ -1,0 +1,24 @@
+# Environment and package manager
+.pixi/
+pixi.lock
+
+# Build artifacts
+bin/
+build/
+dist/
+*.o
+*.a
+*.so
+*.dylib
+*.mojopkg
+*.mojoc
+.mojo_cache/
+
+# Python cache
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Operating system
+.DS_Store
+Thumbs.db
