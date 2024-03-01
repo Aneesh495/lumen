@@ -33,3 +33,9 @@ from .types import (
     ColorSpace,
     RenderChannel,
 )
+
+from .config import (
+    CameraConfig,
+    RenderConfig,
+    TrainingConfig,
+)
