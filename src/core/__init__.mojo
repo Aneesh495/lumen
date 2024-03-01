@@ -39,3 +39,10 @@ from .config import (
     RenderConfig,
     TrainingConfig,
 )
+
+from .error import (
+    StatusCode,
+    LumenStatus,
+    validate_dimension,
+    validate_range,
+)
