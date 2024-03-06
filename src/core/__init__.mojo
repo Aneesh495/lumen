@@ -46,3 +46,9 @@ from .error import (
     validate_dimension,
     validate_range,
 )
+
+from .buffer import (
+    FloatBuffer,
+    UInt64Buffer,
+    IntBuffer,
+)
