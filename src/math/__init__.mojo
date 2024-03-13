@@ -7,3 +7,9 @@ from .vector import (
     Vec3f,
     Vec4f,
 )
+
+from .matrix import (
+    Mat2x2f,
+    Mat3x3f,
+    Mat4x4f,
+)
