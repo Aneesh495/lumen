@@ -5,7 +5,7 @@ High-performance 2D, 3D, and 4D vector representations with SIMD arithmetic.
 from std.math import sqrt, min, max
 from std.simd import SIMD
 
-struct Vec2f:
+struct Vec2f(ImplicitlyCopyable):
     var x: Float32
     var y: Float32
 
@@ -52,7 +52,7 @@ struct Vec2f:
         return self.sub(other).length()
 
 
-struct Vec3f:
+struct Vec3f(ImplicitlyCopyable):
     var x: Float32
     var y: Float32
     var z: Float32
@@ -119,7 +119,7 @@ struct Vec3f:
         return SIMD[DType.float32, 4](self.x, self.y, self.z, 0.0)
 
 
-struct Vec4f:
+struct Vec4f(ImplicitlyCopyable):
     var x: Float32
     var y: Float32
     var z: Float32

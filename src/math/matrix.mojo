@@ -5,7 +5,7 @@ High-performance 2x2, 3x3, and 4x4 matrix representations and linear algebraic o
 from .vector import Vec2f, Vec3f, Vec4f
 from std.math import tan
 
-struct Mat2x2f:
+struct Mat2x2f(ImplicitlyCopyable):
     var m00: Float32
     var m01: Float32
     var m10: Float32
@@ -59,7 +59,7 @@ struct Mat2x2f:
         )
 
 
-struct Mat3x3f:
+struct Mat3x3f(ImplicitlyCopyable):
     var m00: Float32
     var m01: Float32
     var m02: Float32
@@ -166,7 +166,7 @@ struct Mat3x3f:
         )
 
 
-struct Mat4x4f:
+struct Mat4x4f(ImplicitlyCopyable):
     var m00: Float32
     var m01: Float32
     var m02: Float32

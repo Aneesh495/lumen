@@ -35,7 +35,7 @@ struct StatusCode:
             return "Unknown runtime status code"
 
 
-struct LumenStatus:
+struct LumenStatus(ImplicitlyCopyable):
     var code: Int
     var message: String
 

@@ -14,7 +14,7 @@ from .types import (
     CoordinateSystem,
 )
 
-struct CameraConfig:
+struct CameraConfig(ImplicitlyCopyable):
     """
     Intrinsic parameters and resolution limits for perspective camera projections.
     """
@@ -62,7 +62,7 @@ struct CameraConfig:
         return 2.0 * atan(Float32(self.height) / (2.0 * self.focal_y))
 
 
-struct RenderConfig:
+struct RenderConfig(ImplicitlyCopyable):
     """
     Settings governing the tile-based SIMD rasterization pipeline.
     """
@@ -111,7 +111,7 @@ struct RenderConfig:
         return self.tiles_x(width) * self.tiles_y(height)
 
 
-struct TrainingConfig:
+struct TrainingConfig(ImplicitlyCopyable):
     """
     Hyperparameters and scheduling parameters for continuous radiance field optimization.
     """
