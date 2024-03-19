@@ -3,15 +3,15 @@ Error management, input validation, and invariant assertion utilities for Lumen.
 """
 
 struct StatusCode:
-    alias SUCCESS: Int = 0
-    alias INVALID_ARGUMENT: Int = 1
-    alias OUT_OF_BOUNDS: Int = 2
-    alias IO_ERROR: Int = 3
-    alias PARSE_ERROR: Int = 4
-    alias MATRIX_SINGULAR: Int = 5
-    alias MEMORY_ALLOCATION_FAILED: Int = 6
-    alias CONVERGENCE_FAILURE: Int = 7
-    alias UNKNOWN_ERROR: Int = 99
+    comptime SUCCESS: Int = 0
+    comptime INVALID_ARGUMENT: Int = 1
+    comptime OUT_OF_BOUNDS: Int = 2
+    comptime IO_ERROR: Int = 3
+    comptime PARSE_ERROR: Int = 4
+    comptime MATRIX_SINGULAR: Int = 5
+    comptime MEMORY_ALLOCATION_FAILED: Int = 6
+    comptime CONVERGENCE_FAILURE: Int = 7
+    comptime UNKNOWN_ERROR: Int = 99
 
     @staticmethod
     def description(code: Int) -> String:
