@@ -13,3 +13,7 @@ from .matrix import (
     Mat3x3f,
     Mat4x4f,
 )
+
+from .quaternion import (
+    Quatf,
+)
