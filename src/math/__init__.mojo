@@ -17,3 +17,7 @@ from .matrix import (
 from .quaternion import (
     Quatf,
 )
+
+from .covariance import (
+    Covariance3D,
+)
