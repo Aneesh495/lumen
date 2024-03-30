@@ -21,3 +21,9 @@ from .quaternion import (
 from .covariance import (
     Covariance3D,
 )
+
+from .projection import (
+    Covariance2D,
+    ProjectiveJacobian,
+    compute_ewa_covariance,
+)
