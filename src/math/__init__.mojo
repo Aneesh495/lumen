@@ -27,3 +27,8 @@ from .projection import (
     ProjectiveJacobian,
     compute_ewa_covariance,
 )
+
+from .spherical_harmonics import (
+    SHBasis,
+    evaluate_sh_color,
+)
