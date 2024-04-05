@@ -32,3 +32,9 @@ from .spherical_harmonics import (
     SHBasis,
     evaluate_sh_color,
 )
+
+from .cholesky import (
+    Eigen2D,
+    solve_eigenvalues_2x2,
+    Cholesky3D,
+)
