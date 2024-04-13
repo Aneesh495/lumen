@@ -6,3 +6,7 @@ from .gaussian import (
     Gaussian3D,
     GaussianSoA,
 )
+
+from .gaussian_cloud import (
+    GaussianCloud,
+)
