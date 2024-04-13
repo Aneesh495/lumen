@@ -10,3 +10,8 @@ from .gaussian import (
 from .gaussian_cloud import (
     GaussianCloud,
 )
+
+from .camera import (
+    Ray3f,
+    PinholeCamera,
+)
