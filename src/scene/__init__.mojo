@@ -15,3 +15,9 @@ from .camera import (
     Ray3f,
     PinholeCamera,
 )
+
+from .trajectory import (
+    CameraKeyframe,
+    CameraTrajectory,
+    catmull_rom_spline,
+)
