@@ -7,7 +7,7 @@ from src.math.vector import Vec3f
 from src.math.quaternion import Quatf
 from src.core.types import MAX_SH_COEFFS_PER_GAUSSIAN
 from std.collections import List
-from std.math import min, max
+from std.math import min, max, sqrt
 
 struct GaussianCloud:
     """
@@ -72,5 +72,4 @@ struct GaussianCloud:
             if d_sq > max_d_sq:
                 max_d_sq = d_sq
 
-        from std.math import sqrt
         return sqrt(max_d_sq)

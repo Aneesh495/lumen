@@ -7,6 +7,7 @@ from src.core.types import CoordinateSystem
 from src.math.vector import Vec2f, Vec3f, Vec4f
 from src.math.matrix import Mat3x3f, Mat4x4f
 from src.math.quaternion import Quatf
+from std.math import sqrt
 
 struct Ray3f(ImplicitlyCopyable):
     var origin: Vec3f
@@ -44,8 +45,6 @@ struct PinholeCamera(ImplicitlyCopyable):
         var s = f.cross(up).normalized()
         var u = s.cross(f)
 
-        # Build rotation matrix where columns are s, u, -f
-        # Convert to quaternion
         var m00 = s.x
         var m11 = u.y
         var m22 = -f.z
@@ -53,7 +52,6 @@ struct PinholeCamera(ImplicitlyCopyable):
 
         var q = Quatf()
         if trace > 0.0:
-            from std.math import sqrt
             var r = sqrt(trace + 1.0)
             var inv_s = 0.5 / r
             q.w = 0.5 * r
@@ -66,7 +64,6 @@ struct PinholeCamera(ImplicitlyCopyable):
         return PinholeCamera(config, eye, q.normalized())
 
     def get_view_rotation(self) -> Mat3x3f:
-        # Inverse rotation of camera pose
         return self.rotation.inverse().to_rotation_matrix()
 
     def world_to_cam(self, p_world: Vec3f) -> Vec3f:
@@ -86,9 +83,6 @@ struct PinholeCamera(ImplicitlyCopyable):
         return self.cam_to_screen(p_cam)
 
     def generate_ray(self, pixel_x: Float32, pixel_y: Float32) -> Ray3f:
-        """
-        Cast primary camera ray from optical center through specified image pixel.
-        """
         var x_norm = (pixel_x - self.config.principal_x) / self.config.focal_x
         var y_norm = (pixel_y - self.config.principal_y) / self.config.focal_y
         var dir_cam = Vec3f(x_norm, y_norm, 1.0).normalized()

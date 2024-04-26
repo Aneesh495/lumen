@@ -85,7 +85,7 @@ struct CameraTrajectory:
             var t_norm = Float32(i) / Float32(num_frames)
             traj.add_keyframe(CameraKeyframe(t_norm, cam.position, cam.rotation))
 
-        return traj
+        return traj^
 
     def sample(self, t_norm: Float32) -> PinholeCamera:
         """
