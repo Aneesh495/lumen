@@ -32,6 +32,7 @@ from .types import (
     CoordinateSystem,
     ColorSpace,
     RenderChannel,
+    parse_float,
 )
 
 from .config import (

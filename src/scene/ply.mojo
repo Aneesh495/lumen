@@ -7,7 +7,7 @@ from .gaussian_cloud import GaussianCloud
 from src.math.vector import Vec3f
 from src.math.quaternion import Quatf
 from src.core.error import LumenStatus, StatusCode
-from src.core.types import MAX_SH_COEFFS_PER_GAUSSIAN
+from src.core.types import MAX_SH_COEFFS_PER_GAUSSIAN, parse_float
 from std.collections import List
 
 struct PLYHeader(ImplicitlyCopyable):
@@ -85,46 +85,36 @@ def read_ply_ascii(filepath: String) -> GaussianCloud:
             var lines = content.split("\n")
 
             var in_header = True
-            var vertex_count: Int = 0
 
             for i in range(len(lines)):
                 var line = lines[i].strip()
-                if len(line) == 0:
+                if line.byte_length() == 0:
                     continue
 
                 if in_header:
-                    if line.startswith("element vertex"):
-                        var parts = line.split(" ")
-                        if len(parts) >= 3:
-                            from std.python import Python
-                            # Simple integer conversion
-                            vertex_count = 100 # Default or parsed count
-                    elif line == "end_header":
+                    if line == "end_header":
                         in_header = False
                 else:
                     var tokens = line.split(" ")
                     if len(tokens) >= 14:
-                        from std.python import Python
-                        var py_float = Python.import_module("builtins").float
+                        var px = parse_float(String(tokens[0]))
+                        var py = parse_float(String(tokens[1]))
+                        var pz = parse_float(String(tokens[2]))
 
-                        var px = Float32(py_float(tokens[0]))
-                        var py = Float32(py_float(tokens[1]))
-                        var pz = Float32(py_float(tokens[2]))
+                        var sh0 = parse_float(String(tokens[3]))
+                        var sh1 = parse_float(String(tokens[4]))
+                        var sh2 = parse_float(String(tokens[5]))
 
-                        var sh0 = Float32(py_float(tokens[3]))
-                        var sh1 = Float32(py_float(tokens[4]))
-                        var sh2 = Float32(py_float(tokens[5]))
+                        var op = parse_float(String(tokens[6]))
 
-                        var op = Float32(py_float(tokens[6]))
+                        var sx = parse_float(String(tokens[7]))
+                        var sy = parse_float(String(tokens[8]))
+                        var sz = parse_float(String(tokens[9]))
 
-                        var sx = Float32(py_float(tokens[7]))
-                        var sy = Float32(py_float(tokens[8]))
-                        var sz = Float32(py_float(tokens[9]))
-
-                        var rw = Float32(py_float(tokens[10]))
-                        var rx = Float32(py_float(tokens[11]))
-                        var ry = Float32(py_float(tokens[12]))
-                        var rz = Float32(py_float(tokens[13]))
+                        var rw = parse_float(String(tokens[10]))
+                        var rx = parse_float(String(tokens[11]))
+                        var ry = parse_float(String(tokens[12]))
+                        var rz = parse_float(String(tokens[13]))
 
                         var g = Gaussian3D(
                             Vec3f(px, py, pz),

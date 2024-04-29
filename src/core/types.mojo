@@ -3,6 +3,7 @@ Fundamental numeric types, dimensional constants, and coordinate conventions for
 """
 
 from std.simd import SIMD
+from std.math import pow
 
 # Global floating-point precision type aliases
 comptime FloatType = Float32
@@ -60,3 +61,57 @@ struct RenderChannel:
     comptime DEPTH: Int = 2
     comptime ALPHA: Int = 4
     comptime NORMALS: Int = 8
+
+
+def parse_float(s: String) -> Float32:
+    """
+    High-performance zero-dependency ASCII string to Float32 parser.
+    """
+    var sign: Float32 = 1.0
+    var val: Float32 = 0.0
+    var div: Float32 = 1.0
+    var in_decimal = False
+    var in_exp = False
+    var exp_sign: Float32 = 1.0
+    var exp_val: Float32 = 0.0
+    var first = True
+    var exp_first = False
+
+    for b in s.bytes():
+        var c = Int(b)
+        if first:
+            first = False
+            if c == 45: # '-'
+                sign = -1.0
+                continue
+            elif c == 43: # '+'
+                continue
+        if c == 101 or c == 69: # 'e' or 'E'
+            in_exp = True
+            exp_first = True
+            continue
+        if in_exp:
+            if exp_first:
+                exp_first = False
+                if c == 45:
+                    exp_sign = -1.0
+                    continue
+                elif c == 43:
+                    continue
+            if c >= 48 and c <= 57:
+                exp_val = exp_val * 10.0 + Float32(c - 48)
+        else:
+            if c == 46: # '.'
+                in_decimal = True
+            elif c >= 48 and c <= 57:
+                var digit = Float32(c - 48)
+                if in_decimal:
+                    div *= 10.0
+                    val += digit / div
+                else:
+                    val = val * 10.0 + digit
+
+    var total = sign * val
+    if in_exp:
+        total *= pow(Float32(10.0), exp_sign * exp_val)
+    return total
