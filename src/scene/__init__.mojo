@@ -21,3 +21,9 @@ from .trajectory import (
     CameraTrajectory,
     catmull_rom_spline,
 )
+
+from .ply import (
+    PLYHeader,
+    write_ply_ascii,
+    read_ply_ascii,
+)
