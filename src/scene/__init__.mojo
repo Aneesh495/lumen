@@ -27,3 +27,10 @@ from .ply import (
     write_ply_ascii,
     read_ply_ascii,
 )
+
+from .datasets import (
+    DatasetFormat,
+    DatasetCamera,
+    DatasetScene,
+    create_synthetic_cube_scene,
+)
