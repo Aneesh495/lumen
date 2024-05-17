@@ -51,9 +51,9 @@ def radix_sort_64bit(mut keys: UInt64Buffer, mut values: IntBuffer):
 
     # 8 passes of 8 bits = 64 bits total
     for pass_idx in range(8):
-        var shift = pass_idx * 8
+        var shift = UInt64(pass_idx * 8)
 
-        # 256 histogram histogram counts
+        # 256 histogram counts
         var counts = List[Int](capacity=256)
         for _ in range(256):
             counts.append(0)
