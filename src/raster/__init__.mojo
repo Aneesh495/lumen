@@ -17,3 +17,8 @@ from .radix_sort import (
     decode_depth_approx,
     radix_sort_64bit,
 )
+
+from .binning import (
+    TileRange,
+    TileRangeIndex,
+)
