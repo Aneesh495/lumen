@@ -22,3 +22,8 @@ from .binning import (
     TileRange,
     TileRangeIndex,
 )
+
+from .compositor import (
+    PixelAccumulator,
+    compute_gaussian_pixel_alpha,
+)
