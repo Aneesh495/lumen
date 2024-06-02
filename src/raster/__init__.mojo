@@ -27,3 +27,7 @@ from .compositor import (
     PixelAccumulator,
     compute_gaussian_pixel_alpha,
 )
+
+from .depth_map import (
+    DepthMap,
+)
