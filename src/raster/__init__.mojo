@@ -31,3 +31,8 @@ from .compositor import (
 from .depth_map import (
     DepthMap,
 )
+
+from .pipeline import (
+    RenderOutput,
+    rasterize_scene,
+)
