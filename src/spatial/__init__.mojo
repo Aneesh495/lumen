@@ -6,3 +6,7 @@ from .morton import (
     expand_bits_10_to_30,
     compute_morton_3d,
 )
+
+from .aabb import (
+    AABB3f,
+)
