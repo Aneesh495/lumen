@@ -75,7 +75,6 @@ struct LBVH:
         radix_sort_64bit(morton_keys, splat_indices)
 
         # 3. Build Leaf Nodes
-        var leaf_offset = 0
         for i in range(n):
             var orig_idx = splat_indices.get(i)
             var pos = Vec3f(cloud.soa.pos_x[orig_idx], cloud.soa.pos_y[orig_idx], cloud.soa.pos_z[orig_idx])
