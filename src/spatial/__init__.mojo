@@ -15,3 +15,8 @@ from .bvh import (
     BVHNode,
     LBVH,
 )
+
+from .raycast import (
+    RayHit,
+    raycast_closest_splat,
+)
