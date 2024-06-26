@@ -9,3 +9,7 @@ from .loss import (
     compute_ssim_window,
     compute_combined_loss,
 )
+
+from .gradients import (
+    GaussianGradients,
+)
