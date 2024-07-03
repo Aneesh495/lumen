@@ -17,3 +17,9 @@ from .gradients import (
 from .optimizer import (
     AdamOptimizer,
 )
+
+from .density_control import (
+    DensityControlStats,
+    densify_and_prune,
+    reset_opacities,
+)
