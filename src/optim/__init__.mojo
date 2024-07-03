@@ -13,3 +13,7 @@ from .loss import (
 from .gradients import (
     GaussianGradients,
 )
+
+from .optimizer import (
+    AdamOptimizer,
+)
