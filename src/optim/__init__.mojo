@@ -23,3 +23,8 @@ from .density_control import (
     densify_and_prune,
     reset_opacities,
 )
+
+from .trainer import (
+    TrainingMetrics,
+    TrainingCoordinator,
+)
