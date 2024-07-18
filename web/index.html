@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumen: Real-Time 3D Gaussian Splatting & Spatial Radiance Engine</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <header class="top-nav">
+            <div class="nav-brand">
+                <span class="logo-badge">LUMEN</span>
+                <span class="logo-title">Spatial Radiance Field Engine</span>
+            </div>
+            <div class="nav-metrics">
+                <div class="metric-pill">
+                    <span class="metric-label">FPS:</span>
+                    <span id="metric-fps" class="metric-val">60.0</span>
+                </div>
+                <div class="metric-pill">
+                    <span class="metric-label">LATENCY:</span>
+                    <span id="metric-latency" class="metric-val">1.2 ms</span>
+                </div>
+                <div class="metric-pill">
+                    <span class="metric-label">SPLATS:</span>
+                    <span id="metric-splats" class="metric-val">512</span>
+                </div>
+                <div class="metric-pill">
+                    <span class="metric-label">TILES:</span>
+                    <span id="metric-tiles" class="metric-val">1200</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar Controls -->
+            <aside class="control-panel">
+                <div class="panel-section">
+                    <h3>Scene Configuration</h3>
+                    <div class="form-group">
+                        <label for="scene-select">Preset Scene</label>
+                        <select id="scene-select">
+                            <option value="cube">Synthetic RGB Lattice Cube</option>
+                            <option value="sphere">Fibonacci Radiance Sphere</option>
+                            <option value="torus">Super-Toroid Radiance Field</option>
+                            <option value="helix">Double Helix Splats</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="splat-density">Splat Count: <span id="density-val">512</span></label>
+                        <input type="range" id="splat-density" min="64" max="4096" step="64" value="512">
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>Rendering Mode</h3>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="render-mode" value="radiance" checked>
+                            <span>Full Radiance</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="render-mode" value="depth">
+                            <span>Depth Heatmap</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="render-mode" value="tiles">
+                            <span>16x16 Tile Grid</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="render-mode" value="wireframe">
+                            <span>Bounding Extents</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>Camera & Optics</h3>
+                    <div class="form-group">
+                        <label for="cam-fov">Vertical FOV: <span id="fov-val">45 deg</span></label>
+                        <input type="range" id="cam-fov" min="20" max="90" step="1" value="45">
+                    </div>
+                    <div class="form-group">
+                        <label for="gaussian-sigma">Radius Multiplier: <span id="sigma-val">3.0</span></label>
+                        <input type="range" id="gaussian-sigma" min="1.0" max="5.0" step="0.1" value="3.0">
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="auto-orbit" checked>
+                            <span>Auto-Orbit Turntable</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>Rasterizer Engine Telemetry</h3>
+                    <div class="telemetry-table">
+                        <div class="tel-row">
+                            <span>Culled Splats</span>
+                            <span id="tel-culled">0</span>
+                        </div>
+                        <div class="tel-row">
+                            <span>Visible Splats</span>
+                            <span id="tel-visible">512</span>
+                        </div>
+                        <div class="tel-row">
+                            <span>Active Tiles</span>
+                            <span id="tel-touched-tiles">480</span>
+                        </div>
+                        <div class="tel-row">
+                            <span>Early Terminated Rays</span>
+                            <span id="tel-early-term">88.4%</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Interactive Viewport Canvas -->
+            <main class="viewport-container">
+                <canvas id="render-canvas"></canvas>
+                <div class="viewport-overlay">
+                    <div class="overlay-hint">
+                        <span>Left Click + Drag: Orbit Camera</span>
+                        <span>Scroll: Zoom</span>
+                        <span>Space: Toggle Orbit</span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/stream.js"></script>
+</body>
+</html>
