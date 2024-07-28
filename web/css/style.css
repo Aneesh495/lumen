@@ -261,3 +261,23 @@ input[type="range"] {
     border: 1px solid var(--panel-border);
     backdrop-filter: blur(6px);
 }
+
+.preview-context {
+  margin: 0;
+  padding: .6rem 1rem;
+  background: #121b27;
+  color: #d6e2ed;
+  font: 400 .85rem/1.45 system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+.preview-context a { color: #9bdeff; }
+:focus-visible { outline: 3px solid #9bdeff; outline-offset: 2px; }
+
+.main-content > * { min-width: 0; min-height: 0; }
+@media (max-width: 760px) {
+  body, .app-container { height: auto; min-height: 100vh; overflow: auto; }
+  .top-nav, .header-metrics { flex-wrap: wrap; gap: .5rem; }
+  .main-content { flex-direction: column-reverse; overflow: visible; }
+  .control-panel { width: 100%; flex: none; }
+  .viewport-container { flex: none; height: 55vh; }
+}
